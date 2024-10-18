@@ -3,6 +3,8 @@
   애플리케이션이 어떻게 설정되고 동작하는지를 정의하는 진입점 역할
 */
 
+require('dotenv').config(); // 환경변수 불러오기
+
 // 오류 처리에 사용되는 모듈로, 404나 500과 같은 HTTP 에러를 생성할 때 사용
 var createError = require('http-errors'); 
 // Node.js 웹 프레임워크인 Express를 불러옵니다.
@@ -15,6 +17,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // 템플릿 엔진으로, HTML 파일을 동적으로 렌더링할 때 사용
 const nunjucks = require('nunjucks');
+
 
 
 // 라우터 설정
@@ -37,6 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'njk');
 nunjucks.configure('views', { 
   express: app,
+  autoescape: true,
   watch: true,
 });
 

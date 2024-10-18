@@ -21,7 +21,9 @@ var router = express.Router(); // 라우터 객체 초기화
 // req는 요청 객체, res는 응답 객체, next는 다음 미들웨어로 요청을 넘길 때 사용하는 함수
 router.get('/', function(req, res, next) {
   // views 폴더에 있는 index.html 파일을 렌더링하여 클라이언트에 반환
-  res.render('index.html');
+  res.render('index', { 
+    kakaoMapsApiKey: process.env.KAKAO_MAPS_API_APPKEY 
+  });
 });
 
 // 모듈 내보내기
