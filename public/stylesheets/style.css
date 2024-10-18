@@ -1,8 +1,197 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@charset "utf-8";
+
+/* 폰트 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
-a {
-  color: #00B7FF;
+/* reset */
+* { margin: 0; padding: 0; font-family: 'Pretendard-Regular'; box-sizing: border-box; }
+ul, ol { list-style: none; }
+
+/* 기초 레이아웃 */
+main { position: relative; height: 100vh; display: flex; overflow: hidden; }
+main #list_frame {
+    z-index: 9999; left: 0; top: 0;
+    background: #fff; width: 378px; height: 100%;
+    letter-spacing: -2%;
+}
+main #list_frame .list_box {
+    width: 100%; height: 100%; position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    padding: 15px; 
+}
+
+/* 왼쪽에 장소 목록 ------------------- */
+    main #list_frame .list_ul {
+        overflow-y: auto; height: 100%;
+        padding: 0 15px;
+    }
+    /* 스크롤바 스타일 */
+    main #list_frame .list_ul::-webkit-scrollbar {
+        width: 6px; /* 스크롤바 너비 */
+    }
+
+    main #list_frame .list_ul::-webkit-scrollbar-track {
+        background: #fff; /* 스크롤바 배경 */
+    }
+
+    main #list_frame .list_ul::-webkit-scrollbar-thumb {
+        background: rgba(41, 53, 56, 0.1); /* 스크롤바 색상 */
+    }
+
+    main #list_frame .list_ul::-webkit-scrollbar-thumb:hover {
+        background: rgba(41, 53, 56, 0.3); /* 호버 시 색상 */
+    }
+    main #list_frame .list_ul > li {
+        border-bottom: 1px dashed #e7e7e7;
+        padding: 10px; margin-bottom: 5px;
+    }
+    main #list_frame .list_ul .top_box {
+        display: flex;
+    }
+    main #list_frame .list_ul .top_box .left {
+        flex:1; display: flex; align-items: center;
+        margin-bottom: 5px;
+    }
+    main #list_frame .list_ul .top_box .left .icon {
+        width: 22px; height: 23px;
+        background-image: url("/images/list_icon1.png");
+        background-position: center;
+        background-size: cover;
+    }
+    main #list_frame .list_ul .top_box .left.active-left .icon {
+        background-image: url("/images/detail_icon1.png");
+    }
+    main #list_frame .list_ul .top_box .left .text {
+        font-size: 18px; font-weight: 600; line-height: 25px; 
+        color: rgba(102, 102, 102, 1); margin-left: 5px;
+    }
+    main #list_frame .list_ul .top_box .more {
+        background: rgba(146, 149, 152, 1); border: none;
+        color: #fff; border-radius: 4px; font-size: 16px;
+        font-weight: 600; margin-right: -10px;
+        width: 88px; display: flex; align-items: center; justify-content: center;
+    }
+    main #list_frame .list_ul .top_box .more:hover { 
+        background: rgba(250, 166, 25, 1);
+    }
+    main #list_frame .list_ul .top_box .more.active {
+        background: rgba(250, 166, 25, 1);
+    }
+    main #list_frame .list_ul .top_box .more .btn {
+        display: inline-block; width: 18px; height: 18px;
+        background: url("/images/more.png") no-repeat center / cover;
+    }
+    main #list_frame .list_ul .conmNm { 
+        font-weight: 500; font-size: 26px; line-height: 34px;
+        margin-bottom: 5px; color: rgba(41, 53, 56, 1);
+    }
+    main #list_frame .list_ul .addr {
+        font-weight: 400; font-size: 16px; line-height: 22px;
+        letter-spacing: -3%; color: rgba(102, 102, 102, 1);
+    }
+/* ------------------- 왼쪽에 장소 목록 */
+
+/* 장소에 대한 추가 정보 ------------------- */
+    main #list_frame .detail_box {
+        position: absolute; left: 100%; top: 0; width: 445px;
+        background: #fff; height: 100%;
+        box-shadow: 0 0 15px rgba(0,0,0,0.15);
+        padding: 20px 30px;
+        display: grid; grid-template-rows: 1fr auto;
+        display: none;
+    }
+    main #list_frame .detail_box .title_box {
+        padding: 10px; margin-bottom: 5px;
+    }
+    main #list_frame .detail_box .title_box .top {
+        display: flex; align-items: center;
+        margin-bottom: 5px;
+    }
+    main #list_frame .detail_box .title_box .top .icon {
+        width: 22px; height: 23px;
+        background: url("/images/detail_icon1.png") no-repeat center / cover;
+    }
+    main #list_frame .detail_box .title_box .top .text {
+        font-size: 18px; font-weight: 600; line-height: 25px; 
+        color: rgba(102, 102, 102, 1); margin-left: 5px;
+    }
+    main #list_frame .detail_box .title_box  .conmNm { 
+        font-weight: 500; font-size: 26px; line-height: 34px;
+        margin-bottom: 5px; color: rgba(41, 53, 56, 1);
+    }
+    main #list_frame .detail_box .info_box {
+        margin-bottom: 15px;
+    }
+    main #list_frame .detail_box .info_box > li {
+        padding: 10px; display: flex; align-items: center;
+    }
+    main #list_frame .detail_box .info_box > li .icon {
+        width: 20px; height: 20px; background-size: cover;
+        background-position: center;
+    }
+    main #list_frame .detail_box .info_box > li.addr .icon {
+        background-image: url("/images/detail_icon2.png");
+    }
+    main #list_frame .detail_box .info_box > li.tel .icon {
+        background-image: url("/images/detail_icon3.png");
+    }
+    main #list_frame .detail_box .info_box > li.des .icon {
+        background-image: url("/images/detail_icon4.png");
+    }
+    main #list_frame .detail_box .info_box > li .text {
+        margin-left: 10px;
+        font-size: 16px; font-weight: 400;
+        line-height: 22px; letter-spacing: -3%;
+        color: rgba(102, 102, 102, 1);
+    }
+    main #list_frame .detail_box .description {
+        padding: 15px; border-radius: 4px;
+        border: 1px solid rgba(231, 231, 231, 1);
+        font-size: 16px; line-height: 22px; letter-spacing: -3%;
+        color: rgba(102, 102, 102, 1);
+    }
+    main #list_frame .detail_box .close {
+        background: rgba(41, 53, 56, 1); border: none;
+        color: #fff; border-radius: 4px; font-size: 16px;
+        font-weight: 600; line-height: 22px; padding: 15px;
+        margin-bottom: 15px;
+    }
+    main #list_frame .detail_box .close .btn {
+        display: inline-block; width: 10px; height: 10px; margin-left: 10px;
+        background: url("/images/close.png") no-repeat center / cover;
+    }
+/* ------------------- 장소에 대한 추가 정보 */
+
+/* 카카오맵 */
+main #map { 
+    flex:1; background: #ccc; width: 100%; height: 100%; 
+}
+.custom-marker {
+    width: 22px; height: 23px;
+    background-image: url("/images/list_icon1.png");
+    background-position: center;
+    background-size: cover;
+}
+.custom-marker.active {
+    background-image: url("/images/detail_icon1.png");
+}
+
+/* 검색창 */
+#search-box { 
+    position: absolute; right: 10px; top: 10px;  
+    z-index: 9999;
+}
+#search-input {
+    font-size: 16px;
+    font-weight: 600; line-height: 22px; padding: 15px;
+}
+#search-button {
+    background: rgba(41, 53, 56, 1); border: none;
+    color: #fff; border-radius: 4px; font-size: 16px;
+    font-weight: 600; line-height: 22px; padding: 15px;
 }

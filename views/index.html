@@ -2,31 +2,55 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloudtype - Node.js</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" href="/images/favicon.ico">
+    <title>유현덕_프런트개발자팀 채용 과제</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a1141f8e5ba5f1f63be5fa6c31d3780c"></script>
 </head>
 <body>
-    <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          <img src="/images/node.png" class="w-36 rounded-lg md:ml-5 lg:ml-5" />
-          <div>
-            <h1 class="text-5xl font-bold">Node.js</h1>
-            <p class="py-6">클라우드타입에서 배포한 Node.js 어플리케이션입니다.</p>
-            <button type="button" onclick="window.open('https://github.com/cloudtype-examples/node-express')" class="btn btn-outline rounded">
-              GitHub
-            </button>
-            <button type="button" onclick="window.open('https://docs.cloudtype.io/')" class="btn btn-outline rounded">
-              Docs
-            </button>
-            <button type="button" onclick="window.open('https://discord.gg/U7HX4BA6hu')" class="btn btn-outline rounded">
-              Discord
-            </button>            
-          </div>
+    <main>
+        <div id="search-box">
+            <input type="text" id="search-input" placeholder="장소 이름을 입력하세요" />
+            <button id="search-button">검색</button>
         </div>
-      </div>
+        <div id="list_frame">
+            <div class="list_box">
+                <!-- 왼쪽에 장소 목록 -->
+                <ul class="list_ul" id="location-list"></ul>
+
+                <!-- 장소에 대한 추가 정보 -->
+                <div class="detail_box" id="detail-box">
+                    <div class="inner">
+                        <div class="title_box">
+                            <div class="top">
+                                <div class="icon"></div>
+                                <p class="text" id="category-text"></p>
+                            </div>
+                            <h2 class="conmNm" id="detail-conmNm"></h2> 
+                        </div>
+                        <ul class="info_box">
+                            <li class="addr">
+                                <div class="icon"></div>
+                                <p class="text" id="detail-addr"></p>
+                            </li>
+                            <li class="tel">
+                                <div class="icon"></div>
+                                <p class="text" id="detail-tel"></p>
+                            </li>
+                            <li class="des" id="detail-des">
+                                <div class="icon"></div>
+                                <p class="text"></p>
+                            </li>
+                        </ul>
+                        <div class="description" id="detail-description"></div>
+                    </div>
+                    <button type="button" class="close" id="close-button">닫기 <span class="btn"></span></button>
+                </div>
+            </div>
+        </div>
+        <!-- 카카오 지도 -->
+        <div id="map"></div>
+        <script src="/js/script.js" defer></script>
+    </main>
 </body>
 </html>
