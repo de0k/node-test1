@@ -15,6 +15,24 @@ router 객체는 Express에서 경로별로 HTTP 요청을 처리할 수 있도�
 정의할 수 있습니다.
 */
 var router = express.Router(); // 라우터 객체 초기화
+var mysql = require('mysql');
+
+// MariaDB 연결 설정
+var connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
+});
+
+// 데이터베이스 연결
+connection.connect((err) => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to database.');
+});
 
 /* 라우트 정의 */
 // 루트경로(/)로 들어왔을 때 처리하는 라우트
@@ -23,6 +41,19 @@ router.get('/', function(req, res, next) {
   // views 폴더에 있는 index.html 파일을 렌더링하여 클라이언트에 반환
   res.render('index', { 
     kakaoMapsApiKey: process.env.KAKAO_MAPS_API_APPKEY 
+  });
+});
+
+// 장소 데이터를 가져오는 API
+router.get('/api/locations', function (req, res, next) {
+  const query = 'SELECT * FROM locations';
+  connection.query(query, function (error, results) {
+    if (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Failed to fetch data' });
+      return;
+    }
+    res.json(results); // JSON 형태로 클라이언트에 반환
   });
 });
 

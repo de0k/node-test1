@@ -13,7 +13,7 @@
 // async -> 함수가 항상 항상 Promise를 반환
 async function fetchLocations() {
     try {
-        const response = await fetch('/data/data.json');
+        const response = await fetch('/api/locations'); // 데이터베이스 API 호출
         return await response.json(); 
         // await -> 프로미스가 해결될 때까지 실행을 멈추고 해결된 후 다음 줄로 진행
         // 서버에서 응답받은 데이터를 json형태로 변환 및 response 객체에 받음
