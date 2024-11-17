@@ -46,6 +46,10 @@ async function init() {
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
+    // 지도 우측 상단 (지도/스카이뷰)
+    var mapTypeControl = new kakao.maps.MapTypeControl();
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
     // 장소 목록 생성
     /* 
         locations객체에 forEach를 사용하여 반복작업 수행.
