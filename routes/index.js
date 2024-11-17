@@ -47,7 +47,25 @@ router.get('/', function(req, res, next) {
 
 // 장소 데이터를 가져오는 API
 router.get('/api/locations', function (req, res, next) {
-  const query = 'SELECT * FROM locations';
+  const query = `
+        SELECT 
+            l.prtnrsNo,
+            l.conmNm,
+            l.strTelno,
+            l.lat,
+            l.lot,
+            c.category_name AS category,
+            a.zip,
+            a.addr,
+            a.daddr,
+            i.image_url,
+            l.description,
+            l.conts
+        FROM locations l
+        LEFT JOIN categories c ON l.category_id = c.category_id
+        LEFT JOIN addresses a ON l.prtnrsNo = a.prtnrsNo
+        LEFT JOIN images i ON l.prtnrsNo = i.prtnrsNo
+    `;
   connection.query(query, function (error, results) {
     if (error) {
       console.error('Error fetching data:', error);

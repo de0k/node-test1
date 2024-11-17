@@ -51,6 +51,8 @@ async function init() {
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
     // 장소 목록 생성
+    // prtnrsNo가 pk이고 쿼리문을 'SELECT * FROM locations' 별도의 명시된 것 없이 
+    // 이렇게 하여 오름차순 출력
     /* 
         locations객체에 forEach를 사용하여 반복작업 수행.
         locations의 각 요소가 location 변수에 할당되어 사용
