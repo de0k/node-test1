@@ -195,3 +195,9 @@ main #map {
     color: #fff; border-radius: 4px; font-size: 16px;
     font-weight: 600; line-height: 22px; padding: 15px;
 }
+
+/* 카테고리 */
+#category_box { 
+    position: absolute; right: 430px; top: 4px;  
+    z-index: 9999;
+}

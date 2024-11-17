@@ -21,9 +21,18 @@ async function fetchLocations() {
         console.error('Error fetching data:', error);
     }
 }
+async function fetchCategories() {
+    try {
+        const response = await fetch('/api/categories'); 
+        return await response.json(); 
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
 
 async function init() {
     const locations = await fetchLocations();
+    const categories = await fetchCategories();
     // 왼쪽에 장소 목록
     const locationList = document.getElementById('location-list'); 
     // 장소에 대한 추가 정보
@@ -31,6 +40,7 @@ async function init() {
     const closeButton = document.getElementById('close-button');
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
+    const categorySelect = document.getElementById('category_select');
     // 상세보기 활성화 여부 체크 
     let activeMoreButton = null; 
     // 마커 활성화 여부 체크
@@ -97,6 +107,14 @@ async function init() {
         });
 
         locationList.appendChild(listItem);
+    });
+
+    // 셀렉트 목록 생성(category_select)
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.category_id;
+        option.textContent = category.category_name;
+        categorySelect.appendChild(option);
     });
 
     // 검색 버튼 클릭 이벤트

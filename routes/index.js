@@ -76,6 +76,19 @@ router.get('/api/locations', function (req, res, next) {
   });
 });
 
+// 카테고리 데이터를 가져오는 API
+router.get('/api/categories', function (req, res, next) {
+  const query = 'SELECT * FROM categories';
+  connection.query(query, function (error, results) {
+    if (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Failed to fetch data' });
+      return;
+    }
+    res.json(results); // JSON 형태로 클라이언트에 반환
+  });
+});
+
 // 모듈 내보내기
 /* 
   **module.exports**를 사용하여 router 객체를 외부로 내보냅니다. 

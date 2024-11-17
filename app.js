@@ -59,6 +59,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // 정적 파일 제공
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/api/locations', indexRouter);
+app.use('/api/categories', indexRouter);
 
 // 404 오류 처리
 // 요청한 경로가 없을 경우 404 오류를 발생시켜 다음 에러 처리
